@@ -98,6 +98,20 @@ void validating_plots(){
    //gStyle->SetPalette(1);
 
    hist3->Write();
+
+  Events33->Draw("reco_beam_startZ>>hist33(100,-20,80");
+   
+   TH1F * hist33 = (TH1F*)gDirectory->Get("hist33");
+   hist33->Scale(1.0/hist33->Integral()) //Area normalization for reco beam startZ
+   gStyle->SetPalette(2);
+   //hist2->SetFillColor(4);
+   hist33->SetXTitle ("reco_beam_startZ [cm]");
+   hist33->SetYTitle ("Number of Events");
+   //hist3->Fit("gaus");
+   hist33->SetTitle("DUNE: ProtoDUNE-HD");
+   //gStyle->SetPalette(1);
+
+   hist33->Write();
    
    
    
