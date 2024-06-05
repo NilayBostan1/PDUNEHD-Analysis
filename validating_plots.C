@@ -30,6 +30,7 @@ void validating_plots(){
   TTree *Events13 = new TTree;
   TTree *Events14 = new TTree;
   TTree *Events15 = new TTree;
+  TTree *Events16 = new TTree;
   
   //TTree *h1 = new TTree;
   
@@ -55,6 +56,7 @@ void validating_plots(){
   Events13 = (TTree*)file->Get("pduneana/beamana");
   Events14 = (TTree*)file->Get("pduneana/beamana");
   Events15 = (TTree*)file->Get("pduneana/beamana");
+  Events16 = (TTree*)file->Get("pduneana/beamana");
   
   
   TFile *fout = new TFile("pdune_hd_analysis.root","RECREATE");
