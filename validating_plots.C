@@ -273,6 +273,15 @@ void validating_plots(){
    hist15->SetYTitle ("#theta [rad]");
    hist15->SetTitle("DUNE: ProtoDUNE-HD, true_beam_daughter");
    hist15->Write();
+
+
+   Events16->Draw("sqrt(pow(true_beam_daughter_startPx,2)+pow(true_beam_daughter_startPy,2)+pow(true_beam_daughter_startPz,2)):TMath::ATan2(true_beam_daughter_startPy, true_beam_daughter_startPx)*(360/(2*TMath::Pi()))>>hist32(50,-180,180,100,0,20","(abs(true_beam_PDG)==211 || abs(true_beam_PDG)==2212 || abs(true_beam_PDG)==321)" "","colz"); 
+   TH2F * hist16 = (TH2F*)gDirectory->Get("hist16");
+   gStyle->SetPalette(1);
+   hist16->SetXTitle ("#phi [deg]");
+   hist16->SetYTitle ("P [GeV/c]");
+   hist16->SetTitle("DUNE: ProtoDUNE-HD, true_beam_daughter");
+   hist16->Write(); 
    
    
                   
