@@ -9,7 +9,7 @@
 #include "TROOT.h"
 #include <math.h> 
 
-void plots(){
+void validating_plots(){
 
   
   TFile *file = new TFile;
