@@ -17,6 +17,7 @@ void validating_plots(){
   TTree *Events = new TTree;
   TTree *Events2 = new TTree;
   TTree *Events3 = new TTree;
+  TTree *Events33 = new TTree;
   TTree *Events4 = new TTree;
   TTree *Events5 = new TTree;
   TTree *Events6 = new TTree;
@@ -40,6 +41,7 @@ void validating_plots(){
   Events = (TTree*)file->Get("pduneana/beamana");
   Events2 = (TTree*)file->Get("pduneana/beamana");
   Events3 = (TTree*)file->Get("pduneana/beamana");
+  Events33 = (TTree*)file->Get("pduneana/beamana");
   Events3 = (TTree*)file->Get("pduneana/beamana");
   Events4 = (TTree*)file->Get("pduneana/beamana");
   Events5 = (TTree*)file->Get("pduneana/beamana");
