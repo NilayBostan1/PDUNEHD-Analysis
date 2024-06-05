@@ -258,7 +258,7 @@ void validating_plots(){
 
    hist13->Write();
    
-   Events14->Draw("reco_beam_endZ>>hist14(100,All,All","(true_beam_PDG==abs(211) || true_beam_PDG==abs(2212) || true_beam_PDG==abs(321)) " "");
+   Events14->Draw("reco_beam_endZ>>hist14(100,All,All","(abs(true_beam_PDG)==211 || abs(true_beam_PDG)==(2212) || abs(true_beam_PDG)==321) " "");
    TH1F * hist14 = (TH1F*)gDirectory->Get("hist14");
    //gStyle->SetPalette(1);
    hist14->SetXTitle ("endZ [cm]");
