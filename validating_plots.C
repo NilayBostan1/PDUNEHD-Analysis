@@ -40,6 +40,7 @@ void validating_plots(){
   TTree *Events24 = new TTree;
   TTree *Events25 = new TTree;
   TTree *Events26 = new TTree;
+  TTree *Events27 = new TTree;
   
   //TTree *h1 = new TTree;
   
@@ -75,7 +76,7 @@ void validating_plots(){
   Events24 = (TTree*)file->Get("pduneana/beamana");
   Events25 = (TTree*)file->Get("pduneana/beamana");
   Events26 = (TTree*)file->Get("pduneana/beamana");
-  
+  Events27 = (TTree*)file->Get("pduneana/beamana");
   
   TFile *fout = new TFile("pdune_hd_analysis.root","RECREATE");
   gStyle->SetPalette(1);
@@ -386,6 +387,18 @@ void validating_plots(){
    hist26->SetYTitle ("Area normalized");
    hist26->SetTitle("All tracks");
    hist26->Write();
+
+   Events27->Draw("beam_inst_Y:beam_inst_X>>hist27(100, All, All,100, All, All","","COLZ");
+   
+   TH2F * hist27 = (TH2F*)gDirectory->Get("hist27");
+   gStyle->SetPalette(1);
+   //hist2->SetFillColor(4);
+   hist27->SetXTitle ("beam inst X [cm]");
+   hist27->SetYTitle ("beam inst Y [cm]");
+   //gPad->SetLogz();
+   hist27->SetStats(0);
+   hist27->SetTitle("DUNE: ProtoDUNE-HD, 2 GeV prod files");
+   hist27->Write();
 
 
                   
