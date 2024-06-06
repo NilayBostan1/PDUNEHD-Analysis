@@ -37,7 +37,9 @@ void validating_plots(){
   TTree *Events21 = new TTree;
   TTree *Events22 = new TTree;
   TTree *Events23 = new TTree;
-  TTree *Events24 = new TTree;v
+  TTree *Events24 = new TTree;
+  TTree *Events25 = new TTree;
+  TTree *Events26 = new TTree;
   
   //TTree *h1 = new TTree;
   
@@ -71,6 +73,8 @@ void validating_plots(){
   Events22 = (TTree*)file->Get("pduneana/beamana");
   Events23 = (TTree*)file->Get("pduneana/beamana");
   Events24 = (TTree*)file->Get("pduneana/beamana");
+  Events25 = (TTree*)file->Get("pduneana/beamana");
+  Events26 = (TTree*)file->Get("pduneana/beamana");
   
   
   TFile *fout = new TFile("pdune_hd_analysis.root","RECREATE");
@@ -364,6 +368,25 @@ void validating_plots(){
    hist24->SetYTitle ("Area normalized");
    hist24->SetTitle("All tracks");
    hist24->Write();
+
+   Events25->Draw("reco_beam_interactingEnergy>>hist25(100,All,All","");
+   TH1F * hist25 = (TH1F*)gDirectory->Get("hist25");
+   hist25->Scale(1.0/hist25->Integral());
+   //gStyle->SetPalette(1);
+   hist25->SetXTitle ("reco beam interacting energy");
+   hist25->SetYTitle ("Area normalized");
+   hist25->SetTitle("All tracks");
+   hist25->Write();
+   
+   Events26->Draw("reco_beam_incidentEnergies>>hist26(100,All,All","");
+   TH1F * hist26 = (TH1F*)gDirectory->Get("hist26");
+   hist26->Scale(1.0/hist26->Integral());
+   //gStyle->SetPalette(1);
+   hist26->SetXTitle ("reco beam incident energy");
+   hist26->SetYTitle ("Area normalized");
+   hist26->SetTitle("All tracks");
+   hist26->Write();
+
 
                   
 }
