@@ -17,7 +17,6 @@ void validating_plots(){
   TTree *Events = new TTree;
   TTree *Events2 = new TTree;
   TTree *Events3 = new TTree;
-  TTree *Events33 = new TTree;
   TTree *Events4 = new TTree;
   TTree *Events5 = new TTree;
   TTree *Events6 = new TTree;
@@ -31,6 +30,14 @@ void validating_plots(){
   TTree *Events14 = new TTree;
   TTree *Events15 = new TTree;
   TTree *Events16 = new TTree;
+  TTree *Events17 = new TTree;
+  TTree *Events18 = new TTree;
+  TTree *Events19 = new TTree;
+  TTree *Events20 = new TTree;
+  TTree *Events21 = new TTree;
+  TTree *Events22 = new TTree;
+  TTree *Events23 = new TTree;
+  TTree *Events24 = new TTree;v
   
   //TTree *h1 = new TTree;
   
@@ -42,7 +49,6 @@ void validating_plots(){
   Events = (TTree*)file->Get("pduneana/beamana");
   Events2 = (TTree*)file->Get("pduneana/beamana");
   Events3 = (TTree*)file->Get("pduneana/beamana");
-  Events33 = (TTree*)file->Get("pduneana/beamana");
   Events3 = (TTree*)file->Get("pduneana/beamana");
   Events4 = (TTree*)file->Get("pduneana/beamana");
   Events5 = (TTree*)file->Get("pduneana/beamana");
@@ -57,6 +63,14 @@ void validating_plots(){
   Events14 = (TTree*)file->Get("pduneana/beamana");
   Events15 = (TTree*)file->Get("pduneana/beamana");
   Events16 = (TTree*)file->Get("pduneana/beamana");
+  Events17 = (TTree*)file->Get("pduneana/beamana");
+  Events18 = (TTree*)file->Get("pduneana/beamana");
+  Events19 = (TTree*)file->Get("pduneana/beamana");
+  Events20 = (TTree*)file->Get("pduneana/beamana");
+  Events21 = (TTree*)file->Get("pduneana/beamana");
+  Events22 = (TTree*)file->Get("pduneana/beamana");
+  Events23 = (TTree*)file->Get("pduneana/beamana");
+  Events24 = (TTree*)file->Get("pduneana/beamana");
   
   
   TFile *fout = new TFile("pdune_hd_analysis.root","RECREATE");
@@ -117,8 +131,6 @@ void validating_plots(){
 
    hist33->Write();
    
-   
-   
    Events4->Draw("reco_beam_endY:reco_beam_endX>>hist4(1000,All,All,1000,All,All","","COLZ");
    
 
@@ -165,7 +177,8 @@ void validating_plots(){
 
    hist6->Write();
    
-   Events7->Draw("reco_beam_dEdX_SCE:reco_beam_resRange_SCE>>hist7(500,0,250,160,0,4","","COLZ");
+   //Events7->Draw("reco_beam_dEdX_SCE:reco_beam_resRange_SCE>>hist7(500,0,130,160,0,17","(abs(reco_beam_true_byE_PDG)==13 || abs(reco_beam_true_byE_PDG)==2212)" "","colz");
+   Events7->Draw("reco_beam_dEdX_SCE:reco_beam_resRange_SCE>>hist7(650,0,130,170,0,17","","colz");
    
    TH2F * hist7 = (TH2F*)gDirectory->Get("hist7");
    //gStyle->SetPalette(2);
@@ -175,7 +188,7 @@ void validating_plots(){
    //gPad->SetLogz();
    hist7->SetStats(0);
    //hist7->Fit("gaus");
-   hist7->SetTitle("DUNE: ProtoDUNE-HD, 2 GeV prod files");
+   hist7->SetTitle("DUNE: ProtoDUNE-HD, 2 GeV prod files, p. #mu");
    gStyle->SetPalette(1);
 
    hist7->Write();
@@ -227,7 +240,7 @@ void validating_plots(){
    //hist11->SetFillColor(4);
    hist11->SetXTitle ("endZ [cm]");
    hist11->SetYTitle ("Number of Events");
-   //hist11->Fit("gaus");
+   //hist9->Fit("gaus");
    hist11->SetTitle("DUNE: ProtoDUNE-HD, 2 GeV prod files, Z_{end, true} > 0");
    //gStyle->SetPalette(1);
 
@@ -254,30 +267,30 @@ void validating_plots(){
    //hist11->SetFillColor(4);
    hist13->SetXTitle ("endZ [cm]");
    hist13->SetYTitle ("Number of Events");
-   //hist13->Fit("gaus");
+   //hist9->Fit("gaus");
    hist13->SetTitle("DUNE: ProtoDUNE-HD, 2 GeV prod files, Z_{end, true} > 0");
    //gStyle->SetPalette(1);
 
    hist13->Write();
    
-   Events14->Draw("reco_beam_endZ>>hist14(100,All,All","(abs(true_beam_PDG)==211 || abs(true_beam_PDG)==(2212) || abs(true_beam_PDG)==321) " "");
+   Events14->Draw("reco_beam_endZ>>hist14(100,All,All","(abs(reco_beam_true_byE_PDG)==211 || abs(reco_beam_true_byE_PDG)==2212 || abs(reco_beam_true_byE_PDG)==321) " "");
    TH1F * hist14 = (TH1F*)gDirectory->Get("hist14");
    //gStyle->SetPalette(1);
    hist14->SetXTitle ("endZ [cm]");
    hist14->SetYTitle ("Events");
    hist14->SetTitle("p, #pi^{+}, K^{+}");
    hist14->Write();
-   
-   Events15->Draw("TMath::ATan2(sqrt(pow(true_beam_daughter_startPx,2)+pow(true_beam_daughter_startPy,2)),true_beam_daughter_startPz):sqrt(pow(true_beam_daughter_startPx,2)+pow(true_beam_daughter_startPx,2)+pow(true_beam_daughter_startPz,2))>>hist15(500,0,5,260,0,1.3","","colz");
+    
+   Events15->Draw("TMath::ATan2(sqrt(pow(true_beam_daughter_startPx,2)+pow(true_beam_daughter_startPy,2)),true_beam_daughter_startPz):sqrt(pow(true_beam_daughter_startPx,2)+pow(true_beam_daughter_startPx,2)+pow(true_beam_daughter_startPz,2))>>hist15(300,0,3,260,0,2.5","","colz");
    TH2F * hist15 = (TH2F*)gDirectory->Get("hist15");
    //gStyle->SetPalette(1);
    hist15->SetXTitle ("P [GeV/c]");
    hist15->SetYTitle ("#theta [rad]");
    hist15->SetTitle("DUNE: ProtoDUNE-HD, true_beam_daughter");
    hist15->Write();
+   
+   Events16->Draw("sqrt(pow(true_beam_daughter_startPx,2)+pow(true_beam_daughter_startPy,2)+pow(true_beam_daughter_startPz,2)):TMath::ATan2(true_beam_daughter_startPy, true_beam_daughter_startPx)*(360/(2*TMath::Pi()))>>hist16(50,-180,180,300,0,3","(abs(reco_beam_true_byE_PDG)==211 || abs(reco_beam_true_byE_PDG)==2212 || abs(reco_beam_true_byE_PDG)==321)" "","colz"); 
 
-
-   Events16->Draw("sqrt(pow(true_beam_daughter_startPx,2)+pow(true_beam_daughter_startPy,2)+pow(true_beam_daughter_startPz,2)):TMath::ATan2(true_beam_daughter_startPy, true_beam_daughter_startPx)*(360/(2*TMath::Pi()))>>hist16(50,-180,180,100,0,20","(abs(true_beam_PDG)==211 || abs(true_beam_PDG)==2212 || abs(true_beam_PDG)==321)" "","colz"); 
    TH2F * hist16 = (TH2F*)gDirectory->Get("hist16");
    gStyle->SetPalette(1);
    hist16->SetXTitle ("#phi [deg]");
@@ -285,9 +298,78 @@ void validating_plots(){
    hist16->SetTitle("DUNE: ProtoDUNE-HD, true_beam_daughter");
    hist16->Write(); 
    
+   Events17->Draw("TMath::ATan2(sqrt(pow(true_beam_daughter_startPx,2)+pow(true_beam_daughter_startPy,2)),true_beam_daughter_startPz)>>hist17(100,All,All","(abs(reco_beam_true_byE_PDG)==211) " "");
+   TH1F * hist17 = (TH1F*)gDirectory->Get("hist17");
+   //gStyle->SetPalette(1);
+   hist17->SetXTitle ("#theta [rad]");
+   hist17->SetYTitle ("Events");
+   hist17->SetTitle("#pi^{+}");
+   hist17->Write();
    
+   Events18->Draw("TMath::ATan2(sqrt(pow(true_beam_daughter_startPx,2)+pow(true_beam_daughter_startPy,2)),true_beam_daughter_startPz)>>hist18(100,All,All","(abs(reco_beam_true_byE_PDG)==2212) " "");
+   TH1F * hist18 = (TH1F*)gDirectory->Get("hist18");
+   //gStyle->SetPalette(1);
+   hist18->SetXTitle ("#theta [rad]");
+   hist18->SetYTitle ("Events");
+   hist18->SetTitle("p");
+   hist18->Write();
+   
+   Events19->Draw("sqrt(pow(true_beam_daughter_startPx,2)+pow(true_beam_daughter_startPy,2)+pow(true_beam_daughter_startPz,2))>>hist19(100,All,All""");
+   TH1F * hist19 = (TH1F*)gDirectory->Get("hist19");
+   //gStyle->SetPalette(1);
+   hist19->SetXTitle ("P [GeV/c]");
+   hist19->SetYTitle ("Events");
+   hist19->SetTitle("All daughters");
+   hist19->Write();
+   
+   Events20->Draw("TMath::ATan2(sqrt(pow(true_beam_daughter_startPx,2)+pow(true_beam_daughter_startPy,2)),true_beam_daughter_startPz)>>hist20(100,All,All","");
+   TH1F * hist20 = (TH1F*)gDirectory->Get("hist20");
+   //gStyle->SetPalette(1);
+   hist20->SetXTitle ("#theta [rad]");
+   hist20->SetYTitle ("Events");
+   hist20->SetTitle("All daughters");
+   hist20->Write();
+   
+   Events21->Draw("reco_beam_Chi2_proton>>hist21(100,All,All","");
+   TH1F * hist21 = (TH1F*)gDirectory->Get("hist21");
+   //gStyle->SetPalette(1);
+   hist21->SetXTitle ("reco beam #chi^2 proton");
+   hist21->SetYTitle ("Events");
+   hist21->SetTitle("All tracks");
+   hist21->Write();
+   
+   Events22->Draw("reco_beam_Chi2_muon>>hist22(100,All,All","");
+   TH1F * hist22 = (TH1F*)gDirectory->Get("hist22");
+   hist22->Scale(1.0/hist22->Integral());
+   //gStyle->SetPalette(1);
+   hist22->SetXTitle ("reco beam #chi^2 muon");
+   hist22->SetYTitle ("Area normalized");
+   hist22->SetTitle("All tracks");
+   hist22->Write();
+   
+   Events23->Draw("reco_beam_Chi2_proton>>hist23(100,All,All","");
+   TH1F * hist23 = (TH1F*)gDirectory->Get("hist23");
+   hist23->Scale(1.0/hist23->Integral());
+   //gStyle->SetPalette(1);
+   hist23->SetXTitle ("reco beam #chi^2 proton");
+   hist23->SetYTitle ("Area normalized");
+   hist23->SetTitle("All tracks");
+   hist23->Write();
+   
+   Events24->Draw("reco_beam_Chi2_muon>>hist24(100,All,All","");
+   TH1F * hist24 = (TH1F*)gDirectory->Get("hist24");
+   hist24->Scale(1.0/hist24->Integral());
+   //gStyle->SetPalette(1);
+   hist24->SetXTitle ("reco beam #chi^2 muon");
+   hist24->SetYTitle ("Area normalized");
+   hist24->SetTitle("All tracks");
+   hist24->Write();
+
                   
 }
 
 
 
+
+   
+   
