@@ -373,7 +373,7 @@ void validating_plots(){
    TH1F * hist25 = (TH1F*)gDirectory->Get("hist25");
    hist25->Scale(1.0/hist25->Integral());
    //gStyle->SetPalette(1);
-   hist25->SetXTitle ("reco beam interacting energy");
+   hist25->SetXTitle ("reco beam interacting energy [GeV]");
    hist25->SetYTitle ("Area normalized");
    hist25->SetTitle("All tracks");
    hist25->Write();
@@ -382,7 +382,7 @@ void validating_plots(){
    TH1F * hist26 = (TH1F*)gDirectory->Get("hist26");
    hist26->Scale(1.0/hist26->Integral());
    //gStyle->SetPalette(1);
-   hist26->SetXTitle ("reco beam incident energy");
+   hist26->SetXTitle ("reco beam incident energy [GeV]");
    hist26->SetYTitle ("Area normalized");
    hist26->SetTitle("All tracks");
    hist26->Write();
