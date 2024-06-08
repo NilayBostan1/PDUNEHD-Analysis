@@ -1,4 +1,4 @@
-//code from Richie D., needs to be modified for pions, protons. 
+//code from Richie D., but needs to be modified for pions, protons. I ll do that and ll match with the new ntuple analysis file.
 #include "TH1.h"
 #include "TGraph.h"
 #include "TH2.h"
