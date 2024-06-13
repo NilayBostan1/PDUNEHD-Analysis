@@ -10,10 +10,13 @@
 #include "TROOT.h"
 #include <math.h> 
 
-void validating_plots(){
+void plots(){
 
   
   TFile *file = new TFile;
+  TFile *file2 = new TFile;
+  TFile *file3 = new TFile;
+ 
   
   TTree *Events = new TTree;
   TTree *Events2 = new TTree;
@@ -42,13 +45,25 @@ void validating_plots(){
   TTree *Events25 = new TTree;
   TTree *Events26 = new TTree;
   TTree *Events27 = new TTree;
+  TTree *Events28 = new TTree;
+  TTree *Events29 = new TTree;
+  TTree *Events30 = new TTree;
+  TTree *Events31 = new TTree;
+  TTree *Events32 = new TTree;
+  TTree *Events33 = new TTree;
+  TTree *Events34 = new TTree;
+  TTree *Events35 = new TTree;
+  TTree *Events36 = new TTree;
+  TTree *Events37 = new TTree;
+  
   
   //TTree *h1 = new TTree;
   
    
   TCanvas *c1 = new TCanvas("name","title",800,800);
   
-  file = TFile::Open("/exp/dune/app/users/nbostan/protoduneana/protoduneana/singlephase/Analysis/ntuple_sets/prod_beam_p1GeV_cosmics_protodunehd_20240402T230743Z_188238_000255_g4_stage1_g4_stage2_sce_E500_detsim_reco_pdhd_ntuple_1.root", "READ");
+  file = TFile::Open("/exp/dune/data/users/calcuttj/pduneana_ntuples/2GeV_production/set0/PDSPProd4a_MC_2GeV_sce_datadriven_ntuple_v09_81_00d01_set0.root", "READ");
+  //file = TFile::Open("/exp/dune/app/users/nbostan/protoduneana/protoduneana/singlephase/Analysis/ntuple_sets/prod_beam_p1GeV_cosmics_protodunehd_20240402T230743Z_188238_000255_g4_stage1_g4_stage2_sce_E500_detsim_reco_pdhd_ntuple_1.root", "READ");
   
   Events = (TTree*)file->Get("pduneana/beamana");
   Events2 = (TTree*)file->Get("pduneana/beamana");
@@ -78,6 +93,17 @@ void validating_plots(){
   Events25 = (TTree*)file->Get("pduneana/beamana");
   Events26 = (TTree*)file->Get("pduneana/beamana");
   Events27 = (TTree*)file->Get("pduneana/beamana");
+  Events28 = (TTree*)file->Get("pduneana/beamana");
+  Events29 = (TTree*)file->Get("pduneana/beamana");
+  Events30 = (TTree*)file->Get("pduneana/beamana");
+  Events31 = (TTree*)file->Get("pduneana/beamana");
+  Events32 = (TTree*)file->Get("pduneana/beamana");
+  Events33 = (TTree*)file->Get("pduneana/beamana");
+  Events34 = (TTree*)file->Get("pduneana/beamana");
+  Events35 = (TTree*)file->Get("pduneana/beamana");
+  Events36 = (TTree*)file->Get("pduneana/beamana");
+  Events37 = (TTree*)file->Get("pduneana/beamana");
+  
   
   TFile *fout = new TFile("pdune_hd_analysis.root","RECREATE");
   gStyle->SetPalette(1);
@@ -122,20 +148,8 @@ void validating_plots(){
    //gStyle->SetPalette(1);
 
    hist3->Write();
-
-  Events33->Draw("reco_beam_startZ>>hist33(100,-20,80");
    
-   TH1F * hist33 = (TH1F*)gDirectory->Get("hist33");
-   hist33->Scale(1.0/hist33->Integral()) //Area normalization for reco beam startZ
-   gStyle->SetPalette(2);
-   //hist2->SetFillColor(4);
-   hist33->SetXTitle ("reco_beam_startZ [cm]");
-   hist33->SetYTitle ("Number of Events");
-   //hist3->Fit("gaus");
-   hist33->SetTitle("DUNE: ProtoDUNE-HD");
-   //gStyle->SetPalette(1);
-
-   hist33->Write();
+   
    
    Events4->Draw("reco_beam_endY:reco_beam_endX>>hist4(1000,All,All,1000,All,All","","COLZ");
    
@@ -370,7 +384,7 @@ void validating_plots(){
    hist24->SetYTitle ("Area normalized");
    hist24->SetTitle("All tracks");
    hist24->Write();
-
+   
    Events25->Draw("reco_beam_interactingEnergy>>hist25(100,All,All","");
    TH1F * hist25 = (TH1F*)gDirectory->Get("hist25");
    hist25->Scale(1.0/hist25->Integral());
@@ -388,7 +402,7 @@ void validating_plots(){
    hist26->SetYTitle ("Area normalized");
    hist26->SetTitle("All tracks");
    hist26->Write();
-
+   
    Events27->Draw("beam_inst_Y:beam_inst_X>>hist27(100, All, All,100, All, All","","COLZ");
    
    TH2F * hist27 = (TH2F*)gDirectory->Get("hist27");
@@ -400,10 +414,102 @@ void validating_plots(){
    hist27->SetStats(0);
    hist27->SetTitle("DUNE: ProtoDUNE-HD, 2 GeV prod files");
    hist27->Write();
+   
+   Events28->Draw("reco_beam_interactingEnergy-true_beam_interactingEnergy>>hist28(100,All,All","");
+   TH1F * hist28 = (TH1F*)gDirectory->Get("hist28");
+   hist28->Scale(1.0/hist28->Integral());
+   //gStyle->SetPalette(1);
+   hist28->SetXTitle ("#DeltaKE_{reco-true} [MeV]");
+   hist28->SetYTitle ("Area normalized");
+   hist28->SetTitle("All tracks");
+   hist28->Write();
+   
+   Events29->Draw("true_beam_len-reco_beam_alt_len>>hist29(100,All,All","");
+   TH1F * hist29 = (TH1F*)gDirectory->Get("hist29");
+   hist29->Scale(1.0/hist29->Integral());
+   //gStyle->SetPalette(1);
+   hist29->SetXTitle ("Length_{true}-Length_{reco,SCE corr.} [cm]");
+   hist29->SetYTitle ("Area normalized");
+   hist29->SetTitle("All tracks");
+   hist29->Write();
+
+   Events30->Draw("true_beam_len-reco_beam_alt_len>>hist30(100,All,All","");
+   TH1F * hist30 = (TH1F*)gDirectory->Get("hist30");
+   hist30->Scale(1.0/hist30->Integral());
+   //gStyle->SetPalette(1);
+   hist30->SetXTitle ("Length_{true}-Length_{reco,SCE corr.} [cm]");
+   hist30->SetYTitle ("Area normalized");
+   hist30->SetTitle("All tracks");
+   hist30->Write();
+   
+   Events31->Draw("true_beam_endZ-reco_beam_calo_endZ>>hist31(100,All,All","");
+   TH1F * hist31 = (TH1F*)gDirectory->Get("hist31");
+   hist31->Scale(1.0/hist31->Integral());
+   //gStyle->SetPalette(1);
+   hist31->SetXTitle ("Z_{end,true}-Z_{end,reco,SCE corr.} [cm]");
+   hist31->SetYTitle ("Area normalized");
+   hist31->SetTitle("All tracks");
+   hist31->Write();
+   
+   Events32->Draw("true_beam_endZ-reco_beam_calo_endZ>>hist32(100,All,All","");
+   TH1F * hist32 = (TH1F*)gDirectory->Get("hist32");
+   hist32->Scale(1.0/hist32->Integral());
+   //gStyle->SetPalette(1);
+   hist32->SetXTitle ("Z_{end,true}-Z_{end,reco,SCE corr.} [cm]");
+   hist32->SetYTitle ("Area normalized");
+   hist32->SetTitle("All tracks");
+   hist32->Write();
+   
+   Events33->Draw("reco_beam_len>>hist33(100,All,All","");
+   TH1F * hist33 = (TH1F*)gDirectory->Get("hist33");
+   hist33->Scale(1.0/hist33->Integral());
+   //gStyle->SetPalette(1);
+   hist33->SetXTitle ("Reconstructed Track Length [cm]");
+   hist33->SetYTitle ("Area normalized");
+   hist33->SetTitle("All tracks");
+   hist33->Write();
+   
+   Events34->Draw("reco_beam_alt_len>>hist34(100,All,All","");
+   TH1F * hist34 = (TH1F*)gDirectory->Get("hist34");
+   hist34->Scale(1.0/hist34->Integral());
+   //gStyle->SetPalette(1);
+   hist34->SetXTitle ("Reconstructed Calib. Track Length [cm]");
+   hist34->SetYTitle ("Area normalized");
+   hist34->SetTitle("All tracks");
+   hist34->Write();
+   
+   Events35->Draw("beam_inst_X-reco_beam_startX>>hist35(100,All,All","");
+   TH1F * hist35 = (TH1F*)gDirectory->Get("hist35");
+   hist35->Scale(1.0/hist35->Integral());
+   //gStyle->SetPalette(1);
+   hist35->SetXTitle ("#Delta_{X,beamline-TPC} [cm]");
+   hist35->SetYTitle ("Area normalized");
+   hist35->SetTitle("All tracks");
+   hist35->Write();
+   
+   Events36->Draw("beam_inst_Y-reco_beam_startY>>hist36(100,All,All","");
+   TH1F * hist36 = (TH1F*)gDirectory->Get("hist36");
+   hist36->Scale(1.0/hist36->Integral());
+   //gStyle->SetPalette(1);
+   hist36->SetXTitle ("#Delta_{Y,beamline-TPC} [cm]");
+   hist36->SetYTitle ("Area normalized");
+   hist36->SetTitle("All tracks");
+   hist36->Write();
+   
+   Events37->Draw("beam_inst_Z-reco_beam_startZ>>hist37(100,All,All","");
+   TH1F * hist37 = (TH1F*)gDirectory->Get("hist37");
+   hist37->Scale(1.0/hist37->Integral());
+   //gStyle->SetPalette(1);
+   hist37->SetXTitle ("#Delta_{Z,beamline-TPC} [cm]");
+   hist37->SetYTitle ("Area normalized");
+   hist37->SetTitle("All tracks");
+   hist37->Write();
 
 
                   
 }
+
+
 
 
 
