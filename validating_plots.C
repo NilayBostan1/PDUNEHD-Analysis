@@ -11,7 +11,16 @@
 #include <math.h> 
 
 void validating_plots(){
-
+	gROOT->LoadMacro("protoDUNEStyle.C");
+	gROOT->SetStyle("protoDUNEStyle");
+	gROOT->ForceStyle();
+	gStyle->SetTitleX(0.35);
+	gStyle->SetOptFit(111);
+	gStyle->SetPadRightMargin(0.15);
+	gStyle->SetPadLeftMargin(0.15);
+	TCanvas c1=TCanvas();
+  c1.SetLeftMargin(0.12);
+	c1.SetBottomMargin(0.18);
   
   TFile *file = new TFile;
   TFile *file2 = new TFile;
@@ -55,12 +64,19 @@ void validating_plots(){
   TTree *Events35 = new TTree;
   TTree *Events36 = new TTree;
   TTree *Events37 = new TTree;
+  TTree *Events38 = new TTree;
+  TTree *Events39 = new TTree;
+  TTree *Events40 = new TTree;
+  TTree *Events41 = new TTree;
+  TTree *Events42 = new TTree;
+  TTree *Events43 = new TTree;
+  TTree *Events44 = new TTree;
   
   
   //TTree *h1 = new TTree;
   
    
-  TCanvas *c1 = new TCanvas("name","title",800,800);
+  //TCanvas *c1 = new TCanvas("name","title",800,800);
   
   file = TFile::Open("/exp/dune/data/users/calcuttj/pduneana_ntuples/2GeV_production/set0/PDSPProd4a_MC_2GeV_sce_datadriven_ntuple_v09_81_00d01_set0.root", "READ");
   //file = TFile::Open("/exp/dune/app/users/nbostan/protoduneana/protoduneana/singlephase/Analysis/ntuple_sets/prod_beam_p1GeV_cosmics_protodunehd_20240402T230743Z_188238_000255_g4_stage1_g4_stage2_sce_E500_detsim_reco_pdhd_ntuple_1.root", "READ");
@@ -103,6 +119,13 @@ void validating_plots(){
   Events35 = (TTree*)file->Get("pduneana/beamana");
   Events36 = (TTree*)file->Get("pduneana/beamana");
   Events37 = (TTree*)file->Get("pduneana/beamana");
+  Events38 = (TTree*)file->Get("pduneana/beamana");
+  Events39 = (TTree*)file->Get("pduneana/beamana");
+  Events40 = (TTree*)file->Get("pduneana/beamana");
+  Events41 = (TTree*)file->Get("pduneana/beamana");
+  Events42 = (TTree*)file->Get("pduneana/beamana");
+  Events43 = (TTree*)file->Get("pduneana/beamana");
+  Events44 = (TTree*)file->Get("pduneana/beamana");
   
   
   TFile *fout = new TFile("pdune_hd_analysis.root","RECREATE");
@@ -114,11 +137,12 @@ void validating_plots(){
  
  
    TH1F * hist1 = (TH1F*)gDirectory->Get("hist1");
+   hist1->Scale(1.0/hist1->Integral());
    gStyle->SetPalette(1);
    hist1->SetFillColor(6);
    hist1->SetXTitle ("True beam Z Endpoint [cm]");
    hist1->SetYTitle ("Number of Events");
-   hist1->SetTitle("DUNE: ProtoDUNE-HD");
+   //hist1->SetTitle("DUNE: ProtoDUNE-HD");
    //hist1->Fit("gaus");
    hist1->Write();
    
@@ -126,12 +150,13 @@ void validating_plots(){
    
 
    TH1F * hist2 = (TH1F*)gDirectory->Get("hist2");
+   hist2->Scale(1.0/hist2->Integral());
    gStyle->SetPalette(2);
    hist2->SetFillColor(4);
    hist2->SetXTitle ("Reconstructed Z Endpoint [cm]");
    hist2->SetYTitle ("Number of Events");
    //hist2->Fit("gaus");
-   hist2->SetTitle("DUNE: ProtoDUNE-HD");
+   //hist2->SetTitle("DUNE: ProtoDUNE-HD");
    //gStyle->SetPalette(1);
 
    hist2->Write();
@@ -139,12 +164,13 @@ void validating_plots(){
    Events3->Draw("reco_beam_startZ>>hist3(100,-20,80");
    
    TH1F * hist3 = (TH1F*)gDirectory->Get("hist3");
+   hist3->Scale(1.0/hist3->Integral());
    gStyle->SetPalette(2);
    //hist2->SetFillColor(4);
    hist3->SetXTitle ("Reconstructed Z Startpoint [cm]");
    hist3->SetYTitle ("Number of Events");
    //hist3->Fit("gaus");
-   hist3->SetTitle("DUNE: ProtoDUNE-HD");
+   //hist3->SetTitle("DUNE: ProtoDUNE-HD");
    //gStyle->SetPalette(1);
 
    hist3->Write();
@@ -162,7 +188,7 @@ void validating_plots(){
    hist4->SetYTitle ("Reconstructed Y Endpoint [cm]");
    hist4->SetStats(0);
    //hist2->Fit("gaus");
-   hist4->SetTitle("DUNE: ProtoDUNE-HD, no Z cut");
+   //hist4->SetTitle("DUNE: ProtoDUNE-HD, no Z cut");
    gStyle->SetPalette(1);
 
    hist4->Write();
@@ -177,7 +203,7 @@ void validating_plots(){
    gPad->SetLogz();
    hist5->SetStats(0);
    //hist2->Fit("gaus");
-   hist5->SetTitle("DUNE: ProtoDUNE-HD, no Z cut");
+   //hist5->SetTitle("DUNE: ProtoDUNE-HD, no Z cut");
    gStyle->SetPalette(1);
 
    hist5->Write();
@@ -192,7 +218,7 @@ void validating_plots(){
    gPad->SetLogz();
    hist6->SetStats(0);
    //hist2->Fit("gaus");
-   hist6->SetTitle("DUNE: ProtoDUNE-HD, no Z cut");
+   //hist6->SetTitle("DUNE: ProtoDUNE-HD, no Z cut");
    gStyle->SetPalette(1);
 
    hist6->Write();
@@ -201,6 +227,7 @@ void validating_plots(){
    Events7->Draw("reco_beam_dEdX_SCE:reco_beam_resRange_SCE>>hist7(650,0,130,170,0,17","","colz");
    
    TH2F * hist7 = (TH2F*)gDirectory->Get("hist7");
+   //hist7->Scale(1.0/hist7->Integral());
    //gStyle->SetPalette(2);
    //hist2->SetFillColor(4);
    hist7->SetXTitle ("Residual range [cm], SCE corr.");
@@ -208,7 +235,7 @@ void validating_plots(){
    //gPad->SetLogz();
    hist7->SetStats(0);
    //hist7->Fit("gaus");
-   hist7->SetTitle("DUNE: ProtoDUNE-HD");
+   //hist7->SetTitle("DUNE: ProtoDUNE-HD");
    gStyle->SetPalette(1);
 
    hist7->Write();
@@ -217,12 +244,13 @@ void validating_plots(){
    Events8->Draw("reco_beam_dEdX_SCE>>hist8(100,0,10","reco_beam_true_byE_PDG==2212");
    
    TH1F * hist8 = (TH1F*)gDirectory->Get("hist8");
+   hist8->Scale(1.0/hist8->Integral());
    //gStyle->SetPalette(2);
    hist8->SetFillColor(2);
    hist8->SetXTitle ("Reconstructed dE/dX SCE [MeV/cm], SCE corr.");
    hist8->SetYTitle ("Number of Events");
    //hist8->Fit("gaus");
-   hist8->SetTitle("DUNE: ProtoDUNE-HD, p");
+   //hist8->SetTitle("DUNE: ProtoDUNE-HD, p");
    //gStyle->SetPalette(1);
 
    hist8->Write();
@@ -230,12 +258,13 @@ void validating_plots(){
    Events9->Draw("reco_beam_dEdX_SCE>>hist9(100,0,10","reco_beam_true_byE_PDG==13");
    
    TH1F * hist9 = (TH1F*)gDirectory->Get("hist9");
+   hist9->Scale(1.0/hist9->Integral());
    gStyle->SetPalette(3);
    hist9->SetFillColor(3);
-   hist9->SetXTitle ("Reconstructed dE/dX SCE [MeV/cm], SCE corr.");
+   hist9->SetXTitle ("Reconstructed dE/dX SCE [MeV/cm], SCE corr., #mu");
    hist9->SetYTitle ("Number of Events");
    //hist9->Fit("gaus");
-   hist9->SetTitle("DUNE: ProtoDUNE-HD, #mu");
+   //hist9->SetTitle("DUNE: ProtoDUNE-HD");
    //gStyle->SetPalette(1);
 
    hist9->Write();
@@ -243,12 +272,13 @@ void validating_plots(){
    Events10->Draw("reco_beam_dEdX_SCE>>hist10(100,0,10","reco_beam_true_byE_PDG==211");
    
    TH1F * hist10 = (TH1F*)gDirectory->Get("hist10");
+   hist10->Scale(1.0/hist10->Integral());
    //gStyle->SetPalette(4);
    hist10->SetFillColor(4);
-   hist10->SetXTitle ("Reconstructed dE/dX SCE [MeV/cm], SCE corr.");
+   hist10->SetXTitle ("Reconstructed dE/dX SCE [MeV/cm], SCE corr., #pi^{+}");
    hist10->SetYTitle ("Number of Events");
    //hist9->Fit("gaus");
-   hist10->SetTitle("DUNE: ProtoDUNE-HD, #pi^{+}");
+   //hist10->SetTitle("DUNE: ProtoDUNE-HD");
    //gStyle->SetPalette(1);
 
    hist10->Write();
@@ -256,12 +286,13 @@ void validating_plots(){
    Events11->Draw("true_beam_endZ>0>>hist11(200,All,All");
    
    TH1F * hist11 = (TH1F*)gDirectory->Get("hist11");
+   hist11->Scale(1.0/hist11->Integral());
    //gStyle->SetPalette(4);
    //hist11->SetFillColor(4);
-   hist11->SetXTitle ("True beam Z Endpoint [cm]");
+   hist11->SetXTitle ("True beam Z Endpoint [cm], Z_{end, true} > 0");
    hist11->SetYTitle ("Number of Events");
    //hist9->Fit("gaus");
-   hist11->SetTitle("DUNE: ProtoDUNE-HD, Z_{end, true} > 0");
+   //hist11->SetTitle("DUNE: ProtoDUNE-HD");
    //gStyle->SetPalette(1);
 
    hist11->Write();
@@ -269,13 +300,14 @@ void validating_plots(){
    Events12->Draw("reco_beam_endY:reco_beam_endZ>>hist12(1200,0,600,1200,0,600","","COLZ");
    
    TH2F * hist12 = (TH2F*)gDirectory->Get("hist12");
+   //hist12->Scale(1.0/hist12->Integral());
    //gStyle->SetPalette(2);
    //hist2->SetFillColor(4);
    hist12->SetXTitle ("Reconstructed Z Endpoint [cm]");
    hist12->SetYTitle ("Reconstructed Y Endpoint [cm]");
    //gPad->SetLogz();
    hist12->SetStats(0);
-   hist12->SetTitle("DUNE: ProtoDUNE-HD");
+   //hist12->SetTitle("DUNE: ProtoDUNE-HD");
    gStyle->SetPalette(1);
 
    hist12->Write();
@@ -283,79 +315,86 @@ void validating_plots(){
    Events13->Draw("true_beam_endZ>0 && reco_beam_endZ<0>>hist13(200,All,All");
    
    TH1F * hist13 = (TH1F*)gDirectory->Get("hist13");
+   hist13->Scale(1.0/hist13->Integral());
    //gStyle->SetPalette(4);
    //hist11->SetFillColor(4);
-   hist13->SetXTitle ("Z Endpoint [cm]");
+   hist13->SetXTitle ("Z Endpoint [cm], Z_{end, true} > 0, Z_{end, reco} < 0");
    hist13->SetYTitle ("Number of Events");
    //hist9->Fit("gaus");
-   hist13->SetTitle("DUNE: ProtoDUNE-HD, Z_{end, true} > 0, Z_{end, reco} < 0");
+   //hist13->SetTitle("DUNE: ProtoDUNE-HD");
    //gStyle->SetPalette(1);
 
    hist13->Write();
    
    Events14->Draw("reco_beam_endZ>>hist14(100,All,All","(abs(reco_beam_true_byE_PDG)==211 || abs(reco_beam_true_byE_PDG)==2212 || abs(reco_beam_true_byE_PDG)==321) " "");
    TH1F * hist14 = (TH1F*)gDirectory->Get("hist14");
+   hist14->Scale(1.0/hist14->Integral());
    //gStyle->SetPalette(1);
-   hist14->SetXTitle ("Z Endpoint [cm]");
+   hist14->SetXTitle ("Reconstructed Z Endpoint [cm], p, #pi^{+}, K^{+}");
    hist14->SetYTitle ("Number of Events");
-   hist14->SetTitle("p, #pi^{+}, K^{+}");
+   //hist14->SetTitle("p, #pi^{+}, K^{+}");
    hist14->Write();
     
    Events15->Draw("TMath::ATan2(sqrt(pow(true_beam_daughter_startPx,2)+pow(true_beam_daughter_startPy,2)),true_beam_daughter_startPz):sqrt(pow(true_beam_daughter_startPx,2)+pow(true_beam_daughter_startPx,2)+pow(true_beam_daughter_startPz,2))>>hist15(300,0,3,260,0,2.5","","colz");
    TH2F * hist15 = (TH2F*)gDirectory->Get("hist15");
    //gStyle->SetPalette(1);
-   hist15->SetXTitle ("p [GeV/c]"); 
-   hist15->SetYTitle ("#theta [rad]");
-   hist15->SetTitle("DUNE: ProtoDUNE-HD, True beam daughter");
+   hist15->SetXTitle ("True beam daughter p [GeV/c]"); 
+   hist15->SetYTitle ("True beam daughter #theta [rad]");
+   //hist15->SetTitle("DUNE: ProtoDUNE-HD");
    hist15->Write();
    
    Events16->Draw("sqrt(pow(true_beam_daughter_startPx,2)+pow(true_beam_daughter_startPy,2)+pow(true_beam_daughter_startPz,2)):TMath::ATan2(true_beam_daughter_startPy, true_beam_daughter_startPx)*(360/(2*TMath::Pi()))>>hist16(50,-180,180,300,0,3","(abs(reco_beam_true_byE_PDG)==211 || abs(reco_beam_true_byE_PDG)==2212 || abs(reco_beam_true_byE_PDG)==321)" "","colz"); 
 
    TH2F * hist16 = (TH2F*)gDirectory->Get("hist16");
    gStyle->SetPalette(1);
-   hist16->SetXTitle ("#phi [deg]");
-   hist16->SetYTitle ("p [GeV/c]");
-   hist16->SetTitle("DUNE: ProtoDUNE-HD, True beam daughter");
+   hist16->SetXTitle ("True beam daughter #phi [deg]");
+   hist16->SetYTitle ("True beam daughter p [GeV/c]");
+   //hist16->SetTitle("DUNE: ProtoDUNE-HD");
    hist16->Write(); 
    
    Events17->Draw("TMath::ATan2(sqrt(pow(true_beam_daughter_startPx,2)+pow(true_beam_daughter_startPy,2)),true_beam_daughter_startPz)>>hist17(100,All,All","(abs(reco_beam_true_byE_PDG)==211) " "");
    TH1F * hist17 = (TH1F*)gDirectory->Get("hist17");
+   hist17->Scale(1.0/hist17->Integral());
    //gStyle->SetPalette(1);
-   hist17->SetXTitle ("#theta [rad]");
+   hist17->SetXTitle (", True beam daughter, #pi^{+} #theta [rad]");
    hist17->SetYTitle ("Number of Events");
-   hist17->SetTitle("DUNE: ProtoDUNE-HD, True beam daughter, #pi^{+}");
+   //hist17->SetTitle("DUNE: ProtoDUNE-HD");
    hist17->Write();
    
    Events18->Draw("TMath::ATan2(sqrt(pow(true_beam_daughter_startPx,2)+pow(true_beam_daughter_startPy,2)),true_beam_daughter_startPz)>>hist18(100,All,All","(abs(reco_beam_true_byE_PDG)==2212) " "");
    TH1F * hist18 = (TH1F*)gDirectory->Get("hist18");
+   hist18->Scale(1.0/hist18->Integral());
    //gStyle->SetPalette(1);
-   hist18->SetXTitle ("#theta [rad]");
+   hist18->SetXTitle ("True beam daughter p #theta [rad]");
    hist18->SetYTitle ("Number of Events");
-   hist18->SetTitle("DUNE: ProtoDUNE-HD, True beam daughter, p");
+   //hist18->SetTitle("DUNE: ProtoDUNE-HD");
    hist18->Write();
    
    Events19->Draw("sqrt(pow(true_beam_daughter_startPx,2)+pow(true_beam_daughter_startPy,2)+pow(true_beam_daughter_startPz,2))>>hist19(100,All,All""");
    TH1F * hist19 = (TH1F*)gDirectory->Get("hist19");
+   hist19->Scale(1.0/hist19->Integral());
    //gStyle->SetPalette(1);
-   hist19->SetXTitle ("p [GeV/c]");
+   hist19->SetXTitle ("True beam daughter p [GeV/c]");
    hist19->SetYTitle ("Number of Events");
-   hist19->SetTitle("DUNE: ProtoDUNE-HD, True beam daughter");
+   //hist19->SetTitle("DUNE: ProtoDUNE-HD");
    hist19->Write();
    
    Events20->Draw("TMath::ATan2(sqrt(pow(true_beam_daughter_startPx,2)+pow(true_beam_daughter_startPy,2)),true_beam_daughter_startPz)>>hist20(100,All,All","");
    TH1F * hist20 = (TH1F*)gDirectory->Get("hist20");
+   hist20->Scale(1.0/hist20->Integral());
    //gStyle->SetPalette(1);
-   hist20->SetXTitle ("#theta [rad]");
+   hist20->SetXTitle ("True beam daughter #theta [rad]");
    hist20->SetYTitle ("Number of Events");
-   hist20->SetTitle("DUNE: ProtoDUNE-HD, True beam daughter");
+   //hist20->SetTitle("DUNE: ProtoDUNE-HD");
    hist20->Write();
    
    Events21->Draw("reco_beam_Chi2_proton>>hist21(100,All,All","");
    TH1F * hist21 = (TH1F*)gDirectory->Get("hist21");
+   hist21->Scale(1.0/hist21->Integral());
    //gStyle->SetPalette(1);
    hist21->SetXTitle ("Reconstructed beam #chi^2 proton");
    hist21->SetYTitle ("Number of Events");
-   hist21->SetTitle("DUNE: ProtoDUNE-HD");
+   //hist21->SetTitle("DUNE: ProtoDUNE-HD");
    hist21->Write();
    
    Events22->Draw("reco_beam_Chi2_muon>>hist22(100,All,All","");
@@ -364,7 +403,7 @@ void validating_plots(){
    //gStyle->SetPalette(1);
    hist22->SetXTitle ("Reconstructed beam #chi^2 muon");
    hist22->SetYTitle ("Number of Events, Area normalized");
-   hist22->SetTitle("DUNE: ProtoDUNE-HD");
+   //hist22->SetTitle("DUNE: ProtoDUNE-HD");
    hist22->Write();
    
    Events23->Draw("reco_beam_Chi2_proton>>hist23(100,All,All","");
@@ -373,7 +412,7 @@ void validating_plots(){
    //gStyle->SetPalette(1);
    hist23->SetXTitle ("Reconstructed beam #chi^2 proton");
    hist23->SetYTitle ("Number of Events, Area normalized");
-   hist23->SetTitle("DUNE: ProtoDUNE-HD");
+   //hist23->SetTitle("DUNE: ProtoDUNE-HD");
    hist23->Write();
    
    Events24->Draw("reco_beam_Chi2_muon>>hist24(100,All,All","");
@@ -382,37 +421,38 @@ void validating_plots(){
    //gStyle->SetPalette(1);
    hist24->SetXTitle ("Reconstructed beam #chi^2 muon");
    hist24->SetYTitle ("Number of Events, Area normalized");
-   hist24->SetTitle("DUNE: ProtoDUNE-HD");
+   //hist24->SetTitle("DUNE: ProtoDUNE-HD");
    hist24->Write();
    
    Events25->Draw("reco_beam_interactingEnergy>>hist25(100,All,All","");
    TH1F * hist25 = (TH1F*)gDirectory->Get("hist25");
    hist25->Scale(1.0/hist25->Integral());
    //gStyle->SetPalette(1);
-   hist25->SetXTitle ("Reconstructed beam interacting energy [MeV]");
+   hist25->SetXTitle ("Reconstructed beam interacting energy(KE) [MeV]");
    hist25->SetYTitle ("Number of Events, Area normalized");
-   hist25->SetTitle("DUNE: ProtoDUNE-HD");
+   //hist25->SetTitle("DUNE: ProtoDUNE-HD");
    hist25->Write();
    
    Events26->Draw("reco_beam_incidentEnergies>>hist26(100,All,All","");
    TH1F * hist26 = (TH1F*)gDirectory->Get("hist26");
    hist26->Scale(1.0/hist26->Integral());
    //gStyle->SetPalette(1);
-   hist26->SetXTitle ("Reconstructed beam incident energy [GeV]");
+   hist26->SetXTitle ("Reconstructed beam incident energy [MeV]");
    hist26->SetYTitle ("Number of Events, Area normalized");
-   hist26->SetTitle("DUNE: ProtoDUNE-HD");
+   //hist26->SetTitle("DUNE: ProtoDUNE-HD");
    hist26->Write();
    
    Events27->Draw("beam_inst_Y:beam_inst_X>>hist27(100, All, All,100, All, All","","COLZ");
    
    TH2F * hist27 = (TH2F*)gDirectory->Get("hist27");
+   //hist32->Scale(1.0/hist32->Integral());
    gStyle->SetPalette(1);
    //hist2->SetFillColor(4);
    hist27->SetXTitle ("X_{beamline [cm]}");
    hist27->SetYTitle ("Y_{beamline [cm]}");
    //gPad->SetLogz();
    hist27->SetStats(0);
-   hist27->SetTitle("DUNE: ProtoDUNE-HD");
+   //hist27->SetTitle("DUNE: ProtoDUNE-HD");
    hist27->Write();
    
    Events28->Draw("reco_beam_interactingEnergy-true_beam_interactingEnergy>>hist28(100,All,All","");
@@ -439,7 +479,7 @@ void validating_plots(){
    //gStyle->SetPalette(1);
    hist30->SetXTitle ("Length_{true}-Length_{reco, SCE corr.} [cm]");
    hist30->SetYTitle ("Number of Events, Area normalized");
-   hist30->SetTitle("DUNE: ProtoDUNE-HD");
+   //hist30->SetTitle("DUNE: ProtoDUNE-HD");
    hist30->Write();
    
    Events31->Draw("true_beam_endZ-reco_beam_calo_endZ>>hist31(100,All,All","");
@@ -448,7 +488,7 @@ void validating_plots(){
    //gStyle->SetPalette(1);
    hist31->SetXTitle ("Z_{end,true}-Z_{end,reco, SCE corr.} [cm]");
    hist31->SetYTitle ("Number of Events, Area normalized");
-   hist31->SetTitle("DUNE: ProtoDUNE-HD");
+   //hist31->SetTitle("DUNE: ProtoDUNE-HD");
    hist31->Write();
    
    Events32->Draw("true_beam_endZ-reco_beam_calo_endZ>>hist32(100,All,All","");
@@ -466,7 +506,7 @@ void validating_plots(){
    //gStyle->SetPalette(1);
    hist33->SetXTitle ("Reconstructed Track Length [cm]");
    hist33->SetYTitle ("Number of Events, Area normalized");
-   hist33->SetTitle("DUNE: ProtoDUNE-HD");
+   //hist33->SetTitle("DUNE: ProtoDUNE-HD");
    hist33->Write();
    
    Events34->Draw("reco_beam_alt_len>>hist34(100,All,All","");
@@ -475,7 +515,7 @@ void validating_plots(){
    //gStyle->SetPalette(1);
    hist34->SetXTitle ("Reconstructed Calib. Track Length [cm]");
    hist34->SetYTitle ("Number of Events, Area normalized");
-   hist34->SetTitle("DUNE: ProtoDUNE-HD");
+   //hist34->SetTitle("DUNE: ProtoDUNE-HD");
    hist34->Write();
    
    Events35->Draw("beam_inst_X-reco_beam_startX>>hist35(100,All,All","");
@@ -484,7 +524,7 @@ void validating_plots(){
    //gStyle->SetPalette(1);
    hist35->SetXTitle ("#Delta_{X,beamline-TPC} [cm]");
    hist35->SetYTitle ("Number of Events, Area normalized");
-   hist35->SetTitle("DUNE: ProtoDUNE-HD");
+   //hist35->SetTitle("DUNE: ProtoDUNE-HD");
    hist35->Write();
    
    Events36->Draw("beam_inst_Y-reco_beam_startY>>hist36(100,All,All","");
@@ -493,7 +533,7 @@ void validating_plots(){
    //gStyle->SetPalette(1);
    hist36->SetXTitle ("#Delta_{Y,beamline-TPC} [cm]");
    hist36->SetYTitle ("Number of Events, Area normalized");
-   hist36->SetTitle("DUNE: ProtoDUNE-HD");
+   //hist36->SetTitle("DUNE: ProtoDUNE-HD");
    hist36->Write();
    
    Events37->Draw("beam_inst_Z-reco_beam_startZ>>hist37(100,All,All","");
@@ -502,11 +542,72 @@ void validating_plots(){
    //gStyle->SetPalette(1);
    hist37->SetXTitle ("#Delta_{Z,beamline-TPC} [cm]");
    hist37->SetYTitle ("Number of Events, Area normalized");
-   hist37->SetTitle("DUNE: ProtoDUNE-HD");
+   //hist37->SetTitle("DUNE: ProtoDUNE-HD");
    hist37->Write();
+   
+   Events38->Draw("TMath::Sqrt(TMath::Power(beam_inst_X-reco_beam_startX,2)+TMath::Power(beam_inst_Y-reco_beam_startY,2))>>hist38(400,0,2""");
+   TH1F * hist38 = (TH1F*)gDirectory->Get("hist38");
+   hist38->Scale(1.0/hist38->Integral());
+   //gStyle->SetPalette(1);
+   hist38->SetXTitle ("#Delta_{XY} [cm]");
+   hist38->SetYTitle ("Number of Events, Area normalized");
+   //hist38->SetTitle("DUNE: ProtoDUNE-HD");
+   hist38->Write();
+   
+   Events39->Draw("(reco_beam_endZ-reco_beam_startZ)/(reco_beam_endX-reco_beam_startX)>>hist39(400,0,2""");
+   TH1F * hist39 = (TH1F*)gDirectory->Get("hist39");
+   hist39->Scale(1.0/hist39->Integral());
+   //gStyle->SetPalette(1);
+   hist39->SetXTitle ("Reconstructed beam cos_{XZ}");
+   hist39->SetYTitle ("Number of Events, Area normalized");
+   //hist39->SetTitle("DUNE: ProtoDUNE-HD");
+   hist39->Write();
+   
+   Events40->Draw("(reco_beam_endZ-reco_beam_startZ)/(reco_beam_endY-reco_beam_startY)>>hist40(400,0,2""");
+   TH1F * hist40 = (TH1F*)gDirectory->Get("hist40");
+   hist40->Scale(1.0/hist40->Integral());
+   //gStyle->SetPalette(1);
+   hist40->SetXTitle ("Reconstructed beam cos_{YZ}");
+   hist40->SetYTitle ("Number of Events, Area normalized");
+   //hist40->SetTitle("DUNE: ProtoDUNE-HD");
+   hist40->Write();
 
-
-                  
+   Events41->Draw("beam_inst_dirX*reco_beam_trackDirX+beam_inst_dirY*reco_beam_trackDirY+beam_inst_dirZ*reco_beam_trackDirZ>>hist41(400,0,2""");
+   TH1F * hist41 = (TH1F*)gDirectory->Get("hist41");
+   hist41->Scale(1.0/hist41->Integral());
+   //gStyle->SetPalette(1);
+   hist41->SetXTitle ("Reconstructed beam dCos");
+   hist41->SetYTitle ("Number of Events, Area normalized");
+   //hist41->SetTitle("DUNE: ProtoDUNE-HD");
+   hist41->Write();
+   
+   Events42->Draw("reco_beam_trackEndDirX*reco_beam_trackDirX+reco_beam_trackEndDirY*reco_beam_trackDirY+reco_beam_trackEndDirZ*reco_beam_trackDirZ>>hist42(200,0,1""");
+   TH1F * hist42 = (TH1F*)gDirectory->Get("hist42");
+   hist42->Scale(1.0/hist42->Integral());
+   //gStyle->SetPalette(1);
+   hist42->SetXTitle ("Reconstructed beam dirCos");
+   hist42->SetYTitle ("Number of Events, Area normalized");
+   //hist42->SetTitle("DUNE: ProtoDUNE-HD");
+   hist42->Write();
+   
+   Events43->Draw("sqrt(true_beam_endP*true_beam_endP*1.e6 + 493.677*493.677) - 493.677>>hist43(100,0,0.06""");
+   TH1F * hist43 = (TH1F*)gDirectory->Get("hist43");
+   hist43->Scale(1.0/hist43->Integral());
+   //gStyle->SetPalette(1);
+   hist43->SetXTitle ("True beam traj interacting Energy (KE) [MeV], K^{#pm}");
+   hist43->SetYTitle ("Number of Events, Area normalized");
+   //hist43->SetTitle("DUNE: ProtoDUNE-HD");
+   hist43->Write();
+   
+   Events44->Draw("sqrt(true_beam_endP*true_beam_endP*1.e6 + 139.57*139.57) - 139.57>>hist44(100,0,0.06""");
+   TH1F * hist44 = (TH1F*)gDirectory->Get("hist44");
+   hist44->Scale(1.0/hist44->Integral());
+   //gStyle->SetPalette(1);
+   hist44->SetXTitle ("True beam traj interacting Energy (KE) [MeV], #pi^{#pm}");
+   hist44->SetYTitle ("Number of Events, Area normalized");
+   //hist44->SetTitle("DUNE: ProtoDUNE-HD");
+   hist44->Write(); 
+        
+                         
 }
-
 
