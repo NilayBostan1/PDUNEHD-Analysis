@@ -95,6 +95,17 @@ void validating_plots(){
   TTree *Events49 = new TTree;
   TTree *Events50 = new TTree;
   TTree *Events51 = new TTree;
+  TTree *Events52 = new TTree;
+  TTree *Events53 = new TTree;
+  TTree *Events54 = new TTree;
+  TTree *Events55 = new TTree;
+  TTree *Events56 = new TTree;
+  TTree *Events57 = new TTree;
+  TTree *Events58 = new TTree;
+  TTree *Events59 = new TTree;
+  TTree *Events60 = new TTree;
+  TTree *Events61 = new TTree;
+  TTree *Events62 = new TTree;
   
   
   //TTree *h1 = new TTree;
@@ -157,6 +168,17 @@ void validating_plots(){
   Events49 = (TTree*)file->Get("pduneana/beamana");
   Events50 = (TTree*)file->Get("pduneana/beamana");
   Events51 = (TTree*)file->Get("pduneana/beamana");
+  Events52 = (TTree*)file->Get("pduneana/beamana");
+  Events53 = (TTree*)file->Get("pduneana/beamana");
+  Events54 = (TTree*)file->Get("pduneana/beamana");
+  Events55 = (TTree*)file->Get("pduneana/beamana");
+  Events56 = (TTree*)file->Get("pduneana/beamana");
+  Events57 = (TTree*)file->Get("pduneana/beamana");
+  Events58 = (TTree*)file->Get("pduneana/beamana");
+  Events59 = (TTree*)file->Get("pduneana/beamana");
+  Events60 = (TTree*)file->Get("pduneana/beamana");
+  Events61 = (TTree*)file->Get("pduneana/beamana");
+  Events62 = (TTree*)file->Get("pduneana/beamana");
   
   
   TFile *fout = new TFile("pdune_hd_analysis.root","RECREATE");
@@ -719,8 +741,152 @@ void validating_plots(){
    hist50->SetTitle("Sec. other");
    //gStyle->SetPalette(1);
    hist50->Write();
-        
-        
+    
+    Events51->Draw("reco_beam_len>>hist51(100,All,All","(abs(reco_beam_true_byE_PDG)==211)" "");
+
+    TH1F * hist51 = (TH1F*)gDirectory->Get("hist51");
+    hist51->Scale(1.0/hist51->Integral());
+    hist51->SetFillColor(4);
+    hist51->SetXTitle ("Reconstructed Track Length [cm]");
+    hist51->SetYTitle ("Number of Events, Area normalized");
+    //hist2->Fit("gaus");
+    hist51->SetTitle("Sec. #pi^{+/-}");
+    //gStyle->SetPalette(1);
+    hist51->Write();
+    
+    Events52->Draw("reco_beam_len>>hist52(100,All,All","(abs(reco_beam_true_byE_PDG)==321)" "");
+
+    TH1F * hist52 = (TH1F*)gDirectory->Get("hist52");
+    hist52->Scale(1.0/hist52->Integral());
+    hist52->SetFillColor(5);
+    hist52->SetXTitle ("Reconstructed Track Length [cm]");
+    hist52->SetYTitle ("Number of Events, Area normalized");
+    //hist2->Fit("gaus");
+    hist52->SetTitle("Sec. K^{+/-}");
+    //gStyle->SetPalette(1);
+    hist52->Write();
+    
+    Events53->Draw("reco_beam_len>>hist53(100,All,All","(abs(reco_beam_true_byE_PDG)==13)" "");
+
+    TH1F * hist53 = (TH1F*)gDirectory->Get("hist53");
+    hist53->Scale(1.0/hist53->Integral());
+    hist53->SetFillColor(6);
+    hist53->SetXTitle ("Reconstructed Track Length [cm]");
+    hist53->SetYTitle ("Number of Events, Area normalized");
+    //hist2->Fit("gaus");
+    hist53->SetTitle("Sec. or cosmic #mu^{+/-}");
+    //gStyle->SetPalette(1);
+    hist53->Write();
+    
+    Events54->Draw("reco_beam_len>>hist54(100,All,All","(abs(reco_beam_true_byE_PDG)==2212)" "");
+
+    TH1F * hist54 = (TH1F*)gDirectory->Get("hist54");
+    hist54->Scale(1.0/hist54->Integral());
+    hist54->SetFillColor(7);
+    hist54->SetXTitle ("Reconstructed Track Length [cm]");
+    hist54->SetYTitle ("Number of Events, Area normalized");
+    //hist2->Fit("gaus");
+    hist54->SetTitle("Sec. p^{+/-}");
+    //gStyle->SetPalette(1);
+    hist48->Write();
+    
+    Events55->Draw("reco_beam_len>>hist55(100,All,All","(abs(reco_beam_true_byE_PDG)==11 || abs(reco_beam_true_byE_PDG)==22)" "");
+
+    TH1F * hist55 = (TH1F*)gDirectory->Get("hist55");
+    hist55->Scale(1.0/hist55->Integral());
+    hist55->SetFillColor(3);
+    hist55->SetXTitle ("Reconstructed Track Length [cm]");
+    hist55->SetYTitle ("Number of Events, Area normalized");
+    //hist2->Fit("gaus");
+    hist55->SetTitle("Sec. e^{+/-}/#gamma");
+    //gStyle->SetPalette(1);
+    hist55->Write();
+    
+    Events56->Draw("reco_beam_len>>hist56(100,All,All","(reco_beam_true_byE_PDG>3000 || reco_beam_true_byE_PDG==-321 || reco_beam_true_byE_PDG==-211 || reco_beam_true_byE_PDG==-2212 || reco_beam_true_byE_PDG==-11 || reco_beam_true_byE_PDG==-22 || (reco_beam_true_byE_PDG)==-999)" "");
+
+    TH1F * hist56 = (TH1F*)gDirectory->Get("hist56");
+    hist56->Scale(1.0/hist56->Integral());
+    hist56->SetFillColor(2);
+    hist56->SetXTitle ("Reconstructed Track Length [cm]");
+    hist56->SetYTitle ("Number of Events, Area normalized");
+    //hist2->Fit("gaus");
+    hist56->SetTitle("Sec. other");
+    //gStyle->SetPalette(1);
+    hist56->Write();
+    
+    Events57->Draw("reco_beam_len>>hist57(100,All,All","(abs(reco_beam_true_byE_PDG)==211)" "");
+
+    TH1F * hist57 = (TH1F*)gDirectory->Get("hist57");
+    //hist57->Scale(1.0/hist57->Integral());
+    hist57->SetFillColor(4);
+    hist57->SetXTitle ("Reconstructed Track Length [cm]");
+    hist57->SetYTitle ("Number of Events");
+    //hist2->Fit("gaus");
+    hist57->SetTitle("Sec. #pi^{+/-}");
+    //gStyle->SetPalette(1);
+    hist57->Write();
+    
+    Events58->Draw("reco_beam_len>>hist58(100,All,All","(abs(reco_beam_true_byE_PDG)==321)" "");
+
+    TH1F * hist58 = (TH1F*)gDirectory->Get("hist58");
+    //hist58->Scale(1.0/hist58->Integral());
+    hist58->SetFillColor(5);
+    hist58->SetXTitle ("Reconstructed Track Length [cm]");
+    hist58->SetYTitle ("Number of Events");
+    //hist2->Fit("gaus");
+    hist58->SetTitle("Sec. K^{+/-}");
+    //gStyle->SetPalette(1);
+    hist58->Write();
+    
+    Events59->Draw("reco_beam_len>>hist59(100,All,All","(abs(reco_beam_true_byE_PDG)==13)" "");
+
+    TH1F * hist59 = (TH1F*)gDirectory->Get("hist59");
+    //hist59->Scale(1.0/hist59->Integral());
+    hist59->SetFillColor(6);
+    hist59->SetXTitle ("Reconstructed Track Length [cm]");
+    hist59->SetYTitle ("Number of Events");
+    //hist2->Fit("gaus");
+    hist59->SetTitle("Sec. or cosmic #mu^{+/-}");
+    //gStyle->SetPalette(1);
+    hist59->Write();
+    
+    Events60->Draw("reco_beam_len>>hist60(100,All,All","(abs(reco_beam_true_byE_PDG)==2212)" "");
+
+    TH1F * hist60 = (TH1F*)gDirectory->Get("hist60");
+    //hist60->Scale(1.0/hist60->Integral());
+    hist60->SetFillColor(7);
+    hist60->SetXTitle ("Reconstructed Track Length [cm]");
+    hist60->SetYTitle ("Number of Events");
+    //hist2->Fit("gaus");
+    hist60->SetTitle("Sec. p^{+/-}");
+    //gStyle->SetPalette(1);
+    hist60->Write();
+    
+    Events61->Draw("reco_beam_len>>hist61(100,All,All","(abs(reco_beam_true_byE_PDG)==11 || abs(reco_beam_true_byE_PDG)==22)" "");
+
+    TH1F * hist61 = (TH1F*)gDirectory->Get("hist61");
+    //hist61->Scale(1.0/hist61->Integral());
+    hist61->SetFillColor(3);
+    hist61->SetXTitle ("Reconstructed Track Length [cm]");
+    hist61->SetYTitle ("Number of Events");
+    //hist2->Fit("gaus");
+    hist61->SetTitle("Sec. e^{+/-}/#gamma");
+    //gStyle->SetPalette(1);
+    hist61->Write();
+    
+    Events62->Draw("reco_beam_len>>hist62(100,All,All","(reco_beam_true_byE_PDG>3000 || reco_beam_true_byE_PDG==-321 || reco_beam_true_byE_PDG==-211 || reco_beam_true_byE_PDG==-2212 || reco_beam_true_byE_PDG==-11 || reco_beam_true_byE_PDG==-22 || (reco_beam_true_byE_PDG)==-999)" "");
+
+    TH1F * hist62 = (TH1F*)gDirectory->Get("hist62");
+    //hist62->Scale(1.0/hist62->Integral());
+    hist62->SetFillColor(2);
+    hist62->SetXTitle ("Reconstructed Track Length [cm]");
+    hist62->SetYTitle ("Number of Events");
+    //hist2->Fit("gaus");
+    hist62->SetTitle("Sec. other");
+    //gStyle->SetPalette(1);
+    hist62->Write();
+    
+
      TLatex tL;
      tL.SetNDC();
      tL.DrawLatex(0.20,0.94,"#bf{DUNE:ProtoDUNE-SP}");
