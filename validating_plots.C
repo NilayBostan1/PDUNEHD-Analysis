@@ -106,6 +106,12 @@ void validating_plots(){
   TTree *Events60 = new TTree;
   TTree *Events61 = new TTree;
   TTree *Events62 = new TTree;
+  TTree *Events63 = new TTree;
+  TTree *Events64 = new TTree;
+  TTree *Events65 = new TTree;
+  TTree *Events66 = new TTree;
+  TTree *Events67 = new TTree;
+  TTree *Events68 = new TTree;
   
   
   //TTree *h1 = new TTree;
@@ -179,6 +185,12 @@ void validating_plots(){
   Events60 = (TTree*)file->Get("pduneana/beamana");
   Events61 = (TTree*)file->Get("pduneana/beamana");
   Events62 = (TTree*)file->Get("pduneana/beamana");
+  Events63 = (TTree*)file->Get("pduneana/beamana");
+  Events64 = (TTree*)file->Get("pduneana/beamana");
+  Events65 = (TTree*)file->Get("pduneana/beamana");
+  Events66 = (TTree*)file->Get("pduneana/beamana");
+  Events67 = (TTree*)file->Get("pduneana/beamana");
+  Events68 = (TTree*)file->Get("pduneana/beamana");
   
   
   TFile *fout = new TFile("pdune_hd_analysis.root","RECREATE");
@@ -886,6 +898,78 @@ void validating_plots(){
     //gStyle->SetPalette(1);
     hist62->Write();
     
+    Events63->Draw("reco_beam_dEdX_SCE>>hist63(100,All,All","(abs(reco_beam_true_byE_PDG)==211)" "");
+
+    TH1F * hist63 = (TH1F*)gDirectory->Get("hist63");
+    //hist57->Scale(1.0/hist57->Integral());
+    hist63->SetFillColor(4);
+    hist63->SetXTitle ("Reconstructed dE/dX SCE [MeV/cm]");
+    hist63->SetYTitle ("Number of Events");
+    //hist2->Fit("gaus");
+    hist63->SetTitle("Sec. #pi^{+/-}");
+    //gStyle->SetPalette(1);
+    hist63->Write();
+    
+    Events64->Draw("reco_beam_dEdX_SCE>>hist64(100,All,All","(abs(reco_beam_true_byE_PDG)==321)" "");
+
+    TH1F * hist64 = (TH1F*)gDirectory->Get("hist64");
+    //hist58->Scale(1.0/hist58->Integral());
+    hist64->SetFillColor(5);
+    hist64->SetXTitle ("Reconstructed dE/dX SCE [MeV/cm]");
+    hist64->SetYTitle ("Number of Events");
+    //hist2->Fit("gaus");
+    hist64->SetTitle("Sec. K^{+/-}");
+    //gStyle->SetPalette(1);
+    hist64->Write();
+    
+    Events65->Draw("reco_beam_dEdX_SCE>>hist65(100,All,All","(abs(reco_beam_true_byE_PDG)==13)" "");
+
+    TH1F * hist65 = (TH1F*)gDirectory->Get("hist65");
+    //hist59->Scale(1.0/hist59->Integral());
+    hist65->SetFillColor(6);
+    hist65->SetXTitle ("Reconstructed dE/dX SCE [MeV/cm]");
+    hist65->SetYTitle ("Number of Events");
+    //hist2->Fit("gaus");
+    hist65->SetTitle("Sec. or cosmic #mu^{+/-}");
+    //gStyle->SetPalette(1);
+    hist65->Write();
+    
+    Events66->Draw("reco_beam_dEdX_SCE>>hist66(100,All,All","(abs(reco_beam_true_byE_PDG)==2212)" "");
+
+    TH1F * hist66 = (TH1F*)gDirectory->Get("hist66");
+    //hist60->Scale(1.0/hist60->Integral());
+    hist66->SetFillColor(7);
+    hist66->SetXTitle ("Reconstructed dE/dX SCE [MeV/cm]");
+    hist66->SetYTitle ("Number of Events");
+    //hist2->Fit("gaus");
+    hist66->SetTitle("Sec. p^{+/-}");
+    //gStyle->SetPalette(1);
+    hist66->Write();
+    
+    Events67->Draw("reco_beam_dEdX_SCE>>hist67(100,All,All","(abs(reco_beam_true_byE_PDG)==11 || abs(reco_beam_true_byE_PDG)==22)" "");
+
+    TH1F * hist67 = (TH1F*)gDirectory->Get("hist67");
+    //hist61->Scale(1.0/hist61->Integral());
+    hist67->SetFillColor(3);
+    hist67->SetXTitle ("Reconstructed dE/dX SCE [MeV/cm]");
+    hist67->SetYTitle ("Number of Events");
+    //hist2->Fit("gaus");
+    hist67->SetTitle("Sec. e^{+/-}/#gamma");
+    //gStyle->SetPalette(1);
+    hist67->Write();
+    
+    Events68->Draw("reco_beam_dEdX_SCE>>hist68(100,All,All","(reco_beam_true_byE_PDG>3000 || reco_beam_true_byE_PDG==-321 || reco_beam_true_byE_PDG==-211 || reco_beam_true_byE_PDG==-2212 || reco_beam_true_byE_PDG==-11 || reco_beam_true_byE_PDG==-22 || (reco_beam_true_byE_PDG)==-999)" "");
+
+    TH1F * hist68 = (TH1F*)gDirectory->Get("hist68");
+    //hist62->Scale(1.0/hist62->Integral());
+    hist68->SetFillColor(2);
+    hist68->SetXTitle ("Reconstructed dE/dX SCE [MeV/cm]");
+    hist68->SetYTitle ("Number of Events");
+    //hist2->Fit("gaus");
+    hist68->SetTitle("Sec. other");
+    //gStyle->SetPalette(1);
+    hist68->Write();
+
 
      TLatex tL;
      tL.SetNDC();
@@ -893,5 +977,6 @@ void validating_plots(){
    c1.Modified();
                      
 }
+
 
 
