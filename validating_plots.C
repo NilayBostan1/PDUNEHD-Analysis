@@ -112,14 +112,14 @@ void validating_plots(){
   TTree *Events66 = new TTree;
   TTree *Events67 = new TTree;
   TTree *Events68 = new TTree;
-  
+  TTree *Events69 = new TTree;
   
   //TTree *h1 = new TTree;
   
    
   //TCanvas *c1 = new TCanvas("name","title",800,800);
   
-  file = TFile::Open("/exp/dune/data/users/calcuttj/pduneana_ntuples/2GeV_production/set0/PDSPProd4a_MC_2GeV_sce_datadriven_ntuple_v09_81_00d01_set0.root", "READ");
+  file = TFile::Open("newfile.root", "READ");
   //file = TFile::Open("/exp/dune/app/users/nbostan/protoduneana/protoduneana/singlephase/Analysis/ntuple_sets/prod_beam_p1GeV_cosmics_protodunehd_20240402T230743Z_188238_000255_g4_stage1_g4_stage2_sce_E500_detsim_reco_pdhd_ntuple_1.root", "READ");
   
   Events = (TTree*)file->Get("pduneana/beamana");
@@ -191,6 +191,7 @@ void validating_plots(){
   Events66 = (TTree*)file->Get("pduneana/beamana");
   Events67 = (TTree*)file->Get("pduneana/beamana");
   Events68 = (TTree*)file->Get("pduneana/beamana");
+  Events69 = (TTree*)file->Get("pduneana/beamana");
   
   
   TFile *fout = new TFile("pdune_hd_analysis.root","RECREATE");
@@ -754,17 +755,17 @@ void validating_plots(){
    //gStyle->SetPalette(1);
    hist50->Write();
     
-    Events51->Draw("reco_beam_len>>hist51(100,All,All","(abs(reco_beam_true_byE_PDG)==211)" "");
+    Events69->Draw("reco_beam_len>>hist69(100,All,All","(abs(reco_beam_true_byE_PDG)==211)" "");
 
-    TH1F * hist51 = (TH1F*)gDirectory->Get("hist51");
-    hist51->Scale(1.0/hist51->Integral());
-    hist51->SetFillColor(4);
-    hist51->SetXTitle ("Reconstructed Track Length [cm]");
-    hist51->SetYTitle ("Number of Events, Area normalized");
+    TH1F * hist69 = (TH1F*)gDirectory->Get("hist69");
+    hist69->Scale(1.0/hist51->Integral());
+    hist69->SetFillColor(4);
+    hist69->SetXTitle ("Reconstructed Track Length [cm]");
+    hist69->SetYTitle ("Number of Events, Area normalized");
     //hist2->Fit("gaus");
-    hist51->SetTitle("Sec. #pi^{+/-}");
+    hist69->SetTitle("Sec. #pi^{+/-}");
     //gStyle->SetPalette(1);
-    hist51->Write();
+    hist69->Write();
     
     Events52->Draw("reco_beam_len>>hist52(100,All,All","(abs(reco_beam_true_byE_PDG)==321)" "");
 
@@ -977,6 +978,7 @@ void validating_plots(){
    c1.Modified();
                      
 }
+
 
 
 
