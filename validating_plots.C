@@ -801,7 +801,7 @@ void validating_plots(){
     //hist2->Fit("gaus");
     hist54->SetTitle("Sec. p^{+/-}");
     //gStyle->SetPalette(1);
-    hist48->Write();
+    hist54->Write();
     
     Events55->Draw("reco_beam_len>>hist55(100,All,All","(abs(reco_beam_true_byE_PDG)==11 || abs(reco_beam_true_byE_PDG)==22)" "");
 
