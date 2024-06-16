@@ -975,7 +975,7 @@ void validating_plots(){
      TLatex tL;
      tL.SetNDC();
      tL.DrawLatex(0.20,0.94,"#bf{DUNE:ProtoDUNE-SP}");
-   c1.Modified();
+     c1.Modified();
                      
 }
 
