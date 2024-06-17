@@ -758,7 +758,7 @@ void validating_plots(){
     Events69->Draw("reco_beam_len>>hist69(100,All,All","(abs(reco_beam_true_byE_PDG)==211)" "");
 
     TH1F * hist69 = (TH1F*)gDirectory->Get("hist69");
-    hist69->Scale(1.0/hist51->Integral());
+    hist69->Scale(1.0/hist69->Integral());
     hist69->SetFillColor(4);
     hist69->SetXTitle ("Reconstructed Track Length [cm]");
     hist69->SetYTitle ("Number of Events, Area normalized");
