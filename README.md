@@ -1,2 +1,3 @@
 # PDUNEHD-Analysis
-validation and xsec measurement analysis code
+validation, xsec measurement analysis codes
+jobsub script for DUNE justIN
